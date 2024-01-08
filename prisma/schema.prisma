@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model Human {
+  humanApiId String @id @unique @default(uuid())
+  humanIndentification String @unique
+  humanName String 
+  humanAge Int
+  humanGender String
+  humanEmail String @unique
+  humanPhone String
+  humanLocation HumanLocation[]
+  humanCreatedAt DateTime @default(now())
+  humanLogin  HumanLogin[]      
+}
+
+model HumanLocation{
+    humanStreetName String
+    humanStreetNumber Int
+    humanCountry String
+    humanState String
+    humanPostalCode String
+    human   Human @relation(fields: [humanApiId], references: [humanApiId], onDelete: Cascade, onUpdate: Cascade)
+    humanApiId  String @unique
+}
+
+model HumanLogin{
+    humanUserName String 
+    humanPassword String 
+    human   Human @relation(fields: [humanApiId], references: [humanApiId], onDelete: Cascade, onUpdate: Cascade)
+    humanApiId  String @unique
+}
