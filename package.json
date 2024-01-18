@@ -4,7 +4,8 @@
   "description": "",
   "main": "/dist/server.js",
   "scripts": {
-    "dev": "ts-node-dev ./src/server.ts",
+    "dev": "npm install && npx prisma generate && npx prisma migrate dev && npm run devtest && npm run devstart",
+    "devstart":"ts-node-dev ./src/server.ts",
     "devtest":"ts-node-dev ./src/test/test.ts",
     "build":"tsc",
     "test":"node ./dist/test/test.js",
