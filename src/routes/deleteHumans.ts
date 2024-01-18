@@ -6,27 +6,35 @@ import { abreviationList } from "../data/countryList";
 export const deleteHumans = Router()
 
 deleteHumans.get("/delete", async(req:Request,res:Response)=>{
-    console.log("rota /delete acessada")
     const getAllHumans = await databaseConnection.human.count()
     if(getAllHumans == 0){
-        res.status(404).json(`não ha humanos para deletar`)
+        res.status(404).json({code:404,message:"dont have humans for delete"})
     }else{
         const humans = await databaseConnection.human.deleteMany()
-        res.status(200).json(`${getAllHumans} humanos deletados`)
+        res.status(200).json({code:200, message:(`${getAllHumans} humans deleted`)})
+        return databaseConnection.$disconnect()
     }
 })
 deleteHumans.get("/delete/:country", async(req:Request,res:Response)=>{
-    console.log("rota /delete acessada")
     const countryAbreviation = req.params.country
     const allAbreviationList = abreviationList
     const countryl = allAbreviationList.includes(countryAbreviation);
     const countryName = getCountryName(countryAbreviation)
     if(!countryl){
-        res.status(404).json({code:404 ,message:'essa nacionalidade não esta disponivel'})
+        res.status(404).json({code:404 ,message:'nation not available'})
     }else{   
-        const getAllHumans = await databaseConnection.human.count()
+        const getAllHumans = await databaseConnection.human.count({
+            where:{
+                humanLocation:{
+                    some:{
+                        humanCountry:countryName
+                    }
+                }
+            }
+        })
         if(getAllHumans == 0){
-            res.status(404).json(`não ha humanos para deletar`)
+            res.status(404).json({code:404,message:"dont have humans for delete"})
+            return databaseConnection.$disconnect()
         }else{
             const humans = await databaseConnection.human.deleteMany({
                 where:{
@@ -37,7 +45,8 @@ deleteHumans.get("/delete/:country", async(req:Request,res:Response)=>{
                     }
                 }
             })
-            res.status(200).json(`${getAllHumans} humanos deletados`)
+            res.status(200).json({code:200, message:(`${getAllHumans} humans deleted`)})
+            return databaseConnection.$disconnect()
         }   
 }
 }

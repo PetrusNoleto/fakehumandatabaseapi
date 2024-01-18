@@ -31,5 +31,6 @@ export const createNewHuman = async(human:humanDatabaseProps) =>{
         return createNew
     } catch (error) {
         console.log(error)
+        return(error)
     }
 }

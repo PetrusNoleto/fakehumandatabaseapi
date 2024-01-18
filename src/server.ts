@@ -1,17 +1,12 @@
 import express from "express"
 import cors from "cors"
-import { getAllHumans } from "./routes/getAllHumans"
-import { deleteHumans } from "./routes/deleteHumans"
-import { $createNewHuman } from "./routes/createNewHuman"
+import { routeslist } from "./routes/routeList"
+import { serverPortNumber } from "./data/importenviromentvariables"
 
+const api = express()
+api.use(cors())
+api.use(routeslist)
 
-
-const server = express()
-server.use(cors())
-server.use(deleteHumans)
-server.use(getAllHumans)
-server.use($createNewHuman)
-
-server.listen(3330,()=>{
-    console.log('helloWord')
+api.listen(serverPortNumber,()=>{
+    console.log('online')
 })

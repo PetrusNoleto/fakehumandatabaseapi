@@ -10,9 +10,8 @@ getAllHumans.get("/humans/:countryabreviations", async(req:Request,res:Response)
     const allAbreviationList = abreviationList
     const countryl = allAbreviationList.includes(humanCountryAbreviation);
     const countryName = getCountryName(humanCountryAbreviation)
-
     if(!countryl){
-        res.status(404).json({code:404 ,message:'essa nacionalidade não esta disponivel'})
+        res.status(404).json({code:404 ,message:'nation not available'})
     }else{
         const humans = await databaseConnection.human.findMany({
             where:{
@@ -27,18 +26,19 @@ getAllHumans.get("/humans/:countryabreviations", async(req:Request,res:Response)
                     humanLocation:true
                 }
             })
-            res.status(200).json({qnt:humans.length,nation:countryName,humansList:humans})
+            res.status(201).json({code:201,qnt:humans.length,nation:countryName,humansList:humans})
+            return databaseConnection.$disconnect()
         }
     }
 )
 getAllHumans.get("/", async(req:Request,res:Response)=>{
     const allAbreviationList = abreviationList
-    console.log("rota / acessada")
     const humans = await databaseConnection.human.findMany({
         include:{
             humanLogin:true,
             humanLocation:true
         }
     })
-    res.status(200).json({qnt:humans.length,nations:allAbreviationList,humansList:humans})
+    res.status(200).json({code:200,qnt:humans.length,nations:allAbreviationList,humansList:humans})
+    return databaseConnection.$disconnect()
 })
