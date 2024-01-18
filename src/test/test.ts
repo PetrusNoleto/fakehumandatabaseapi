@@ -36,7 +36,7 @@ const apiConnection = async()=>{
         }
         return (data)
     }catch(error){
-        console.log(`error ${79830} not api connection`)
+        console.log(`error ${79830} external api connection failed`)
         process.exit(1)
     }
 }
