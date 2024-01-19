@@ -1,7 +1,7 @@
 {
   "name": "fakehumandatabase",
   "version": "1.0.0",
-  "description": "",
+  "description": "Created to test projects using names that look like real people, in any project that uses any of this data",
   "main": "/dist/server.js",
   "scripts": {
     "dev": "npm install && npx prisma generate && npx prisma migrate dev && npm run devtest && npm run devstart",
@@ -12,9 +12,9 @@
     "start":"node ./dist/server.js",
     "deploy": "npm install && npx prisma generate && npx prisma migrate deploy && npm run build && npm run test && npm run start"
   },
-  "keywords": ["api","fake"],
+  "keywords": [],
   "author": "petrus noleto",
-  "license": "ISC",
+  "license": "",
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
