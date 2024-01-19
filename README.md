@@ -111,10 +111,18 @@ step 3: check names
 
 ##### solutions error (48960) - failed connection with database or database not existis or database address incorrect or database address not defined
 
-``` step 1: Verify that environment variable  DATABASE_URL  have been declared ```
+``` 
+step 1: Verify that environment variable  DATABASE_URL  have been declared
+```
 
-``` step 2: verify the environment variable DATABASE_URL is empty ```
+``` 
+step 2: verify the environment variable DATABASE_URL is empty
+```
 
-``` step 3: verify the database status ```
+```
+step 3: verify the database status
+```
 
-``` step 4: verify the database connection ```
+``` 
+step 4: verify the database connection
+```
