@@ -5,10 +5,10 @@ Created to test projects using names that look like real people, in any project 
 - <a href ="#Get-Started">Get Started</a>
   - <a href ="#instalation">instalation</a>
   - <a href ="#environment-Variables">Environment Variables</a>
-- <a href ="#comands">comands</a>
+- <a href ="#commands">commands</a>
 - <a href ="#erros">erros</a>
   - <a href ="#erro85690">85690</a>
-  - <a href ="erro79830">79830</a>
+  - <a href ="#erro79830">79830</a>
   - <a href ="#erro48530">48530</a>
   - <a href ="#erro48960">48960</a>
 
@@ -45,7 +45,7 @@ API_SERVER = "6580”
 > API_SERVER is default port of this project change if necessary
 > 
 
-### <span id = "commands" > Commands</span>
+### <span id="commands" >commands</span>
 
 #### Deploy
 
